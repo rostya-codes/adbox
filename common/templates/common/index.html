@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to QuickList{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <header class="bg-primary text-white text-center py-5">
+        <h1 class="display-4">Welcome to QuickList</h1>
+        <p class="lead">Post and browse local listings. Chat in real time. It's fast, simple, and free.</p>
+        <a href="" class="btn btn-light btn-lg mt-3">Browse Listings</a>
+        <!-- if user.is_authenticated -->
+            <a href="" class="btn btn-outline-light btn-lg mt-3">Post Your Ad</a>
+        <!-- endif -->
+    </header>
+
+    <!-- Features Section -->
+    <section class="container py-5">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h4>🚀 Easy Posting</h4>
+                <p>Create and manage your ads with just a few clicks.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>💬 Real-Time Chat</h4>
+                <p>Contact sellers and buyers instantly with built-in chat.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>🔒 Safe & Secure</h4>
+                <p>Only verified users can post and message.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
