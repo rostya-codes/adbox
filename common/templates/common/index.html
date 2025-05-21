@@ -9,7 +9,7 @@
         <p class="lead">Post and browse local listings. Chat in real time. It's fast, simple, and free.</p>
         <a href="" class="btn btn-light btn-lg mt-3">Browse Listings</a>
         {% if user.is_authenticated %}
-            <a href="" class="btn btn-outline-light btn-lg mt-3">Post Your Ad</a>
+            <a href="{% url 'create-ad' %}" class="btn btn-outline-light btn-lg mt-3">Post Your Ad</a>
         {% endif %}
     </header>
 
