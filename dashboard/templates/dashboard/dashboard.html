@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — QuickList{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">My Ads</h2>
+        <a href="{% url 'create-ad' %}" class="btn btn-success">+ Create Ad</a>
+    </div>
+
+    {% if ads %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for ad in ads %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        {% if ad.image %}
+                            <img src="{{ ad.image.url }}" class="card-img-top" alt="{{ ad.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ ad.title }}</h5>
+                            <p class="card-text">{{ ad.description|truncatewords:20 }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ ad.price }}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="{% url 'update-ad' ad.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'delete-ad' ad.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">You have not posted any ads yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

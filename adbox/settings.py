@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'common',
     'accounts',
     'ads',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

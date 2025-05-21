@@ -32,26 +32,34 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto d-flex align-items-center gap-2">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link text-white" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        <a class="nav-link text-white" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" class="m-0 p-0">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-link nav-link" style="padding: 0; border: none; background: none;">
+                            <button type="submit" class="btn btn-outline-light btn-sm">
                                 Logout
                             </button>
                         </form>
                     </li>
                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
+
 
     <main>
         {% block content %}{% endblock %}
