@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Ads List — QuickList{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Ads List</h2>
+    {% if object_list %}
+        <div class="row">
+            {% for ad in object_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if ad.image %}
+                            <img src="{{ ad.image.url }}" class="card-img-top" alt="{{ ad.title }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ ad.title }}</h5>
+                            <p class="card-text text-truncate">{{ ad.description }}</p>
+                            <p class="card-text fw-bold">${{ ad.price }}</p>
+                            <a href="{% url 'ad-detail' ad.pk %}" class="btn btn-primary mt-auto">View details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">No ads found.</p>
+    {% endif %}
+</div>
+{% endblock %}
