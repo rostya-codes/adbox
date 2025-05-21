@@ -1,10 +1,14 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic import UpdateView
+from django.views.generic import CreateView
 
 from accounts.forms import RegisterForm
+
+User = get_user_model()
 
 
 class RegisterView(CreateView):
@@ -45,6 +49,17 @@ class CustomLoginView(LoginView):
         if request.user.is_authenticated:
             return redirect(self.success_url)
         return super().dispatch(request, *args, **kwargs)
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ('first_name', 'last_name', 'username')
+    template_name = 'accounts/profile.html'
+    success_url = reverse_lazy('profile')
+    context_object_name = 'user'
+
+    def get_object(self, queryset=None):  # Явне вимкнення використання queryset
+        return self.request.user
 
 
 class CustomLogoutView(LogoutView):
