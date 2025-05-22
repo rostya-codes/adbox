@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'accounts',
     'ads',
     'dashboard',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +99,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+ASGI_APPLICATION = "adbox.asgi.application"
 
 AUTH_USER_MODEL = 'accounts.User'
 

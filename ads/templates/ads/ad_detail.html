@@ -15,6 +15,7 @@
             <h4>Price: ${{ ad.price }}</h4>
             <p>{{ ad.description }}</p>
             <p><strong>Category:</strong> {{ ad.category.name }}</p>
+            <a href="{% url 'chat-room' ad.pk %}" class="btn btn-outline-primary">Chat with seller</a>
             <a href="{% url 'ads-list' %}" class="btn btn-secondary">Back to list</a>
         </div>
     </div>
